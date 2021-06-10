@@ -139,7 +139,7 @@
                             <OutArgument x:TypeArguments="x:String">[ParticipantEmploymentStatus]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
-                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf(“Employment Status?”)+“Employment Status? “.Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf("Employment Status? ")+"Employment Status? ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
                           </ui:AssignOperation.Value>
                         </ui:AssignOperation>
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
@@ -147,7 +147,7 @@
                             <OutArgument x:TypeArguments="x:String">[ParticipantPhoneNumber]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
-                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf(“Phone Number: ”)+“Phone Number: “.Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf("Phone Number: ")+"Phone Number: ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
                           </ui:AssignOperation.Value>
                         </ui:AssignOperation>
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
@@ -155,7 +155,7 @@
                             <OutArgument x:TypeArguments="x:String">[ParticipantGender]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
-                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf(“Gender: ”)+“Gender: “.Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf("Gender: ")+"Gender: ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
                           </ui:AssignOperation.Value>
                         </ui:AssignOperation>
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
@@ -163,7 +163,7 @@
                             <OutArgument x:TypeArguments="x:String">[ParticipantEmail]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
-                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf(“Email address: ”)+“Email address: “.Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf("Email address: ")+"Email address: ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
                           </ui:AssignOperation.Value>
                         </ui:AssignOperation>
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
