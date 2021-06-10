@@ -81,7 +81,7 @@
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Retrieve Email" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Common\RetrieveEmail.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="in_FilterExpression">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;EMAIL_SUBJECT&quot;).ToString" />
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;EMAIL_SUBJECT&quot;).ToString().Substring(0, 12)" />
         </InArgument>
         <InArgument x:TypeArguments="x:Int32" x:Key="in_IMAPPort">
           <Literal x:TypeArguments="x:Int32" Value="993" />

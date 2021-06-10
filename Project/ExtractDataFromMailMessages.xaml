@@ -68,7 +68,6 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="Extract Participant Info From Body and add to Datatable&#xA;" DisplayName="ExtractDataFromMailMessages" sap:VirtualizedContainerService.HintSize="555.2,1282.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -108,6 +107,7 @@
                 <Sequence DisplayName="Extract and Add To Data Table" sap:VirtualizedContainerService.HintSize="375.2,643.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:String" Name="MailBody" />
+                    <Variable x:TypeArguments="x:String" Name="Result" />
                   </Sequence.Variables>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -131,7 +131,7 @@
                             <OutArgument x:TypeArguments="x:String">[ParticipantFullName]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
-                            <InArgument x:TypeArguments="x:String" xml:space="preserve">[MailBody.Substring(MailBody.IndexOf("From: ")+"From:  ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf("From: ")+"From: ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
                           </ui:AssignOperation.Value>
                         </ui:AssignOperation>
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
@@ -139,7 +139,7 @@
                             <OutArgument x:TypeArguments="x:String">[ParticipantEmploymentStatus]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
-                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf("Employment Status? ")+"Employment Status? ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf("*Employment Status?* ")+"*Employment Status?* ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
                           </ui:AssignOperation.Value>
                         </ui:AssignOperation>
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
@@ -147,7 +147,7 @@
                             <OutArgument x:TypeArguments="x:String">[ParticipantPhoneNumber]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
-                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf("Phone Number: ")+"Phone Number: ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf("*Phone Number:* ")+"*Phone Number:* ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
                           </ui:AssignOperation.Value>
                         </ui:AssignOperation>
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
@@ -155,7 +155,7 @@
                             <OutArgument x:TypeArguments="x:String">[ParticipantGender]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
-                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf("Gender: ")+"Gender: ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf("*Gender:* ")+"*Gender:* ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
                           </ui:AssignOperation.Value>
                         </ui:AssignOperation>
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
@@ -163,7 +163,7 @@
                             <OutArgument x:TypeArguments="x:String">[ParticipantEmail]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
-                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf("Email address: ")+"Email address: ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf("*Email address:* ")+"*Email address:* ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
                           </ui:AssignOperation.Value>
                         </ui:AssignOperation>
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
@@ -171,7 +171,7 @@
                             <OutArgument x:TypeArguments="x:String">[ParticipantContactMedium]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
-                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf("Where I heard of the Bootcamp program: ")+"Where I heard of the Bootcamp program: ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf("*Where I heard of the Bootcamp program:* ")+"*Where I heard of the Bootcamp program:* ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
                           </ui:AssignOperation.Value>
                         </ui:AssignOperation>
                       </scg:List>
