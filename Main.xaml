@@ -60,9 +60,9 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch - Execute Workflows" sap:VirtualizedContainerService.HintSize="436.8,1978.4" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch - Execute Workflows" sap:VirtualizedContainerService.HintSize="436.8,2132" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <Sequence DisplayName="Execute Workflows" sap:VirtualizedContainerService.HintSize="384,1747.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Execute Workflows" sap:VirtualizedContainerService.HintSize="384,1900.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
             <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="Config" />
             <Variable x:TypeArguments="x:String" Name="SenderEmail" />
@@ -165,6 +165,34 @@
               </InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">
                 <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="FilePath" />
+              </InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SendEmail workflow" sap:VirtualizedContainerService.HintSize="342.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Common\SendEmail.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_Subject">
+                <Literal x:TypeArguments="x:String">Newly Processed Apllicants List</Literal>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_SenderEmailAddress">
+                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="SenderEmail" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_ReceipientEmailAddress">
+                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;SUPERVISOR_EMAIL&quot;).ToString" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_Body">
+                <Literal x:TypeArguments="x:String">Attched are the files</Literal>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">
+                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="FilePath" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_SMTPServer">
+                <Literal x:TypeArguments="x:String">smtp.gmail.com</Literal>
+              </InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="in_SMTPPort">
+                <Literal x:TypeArguments="x:Int32" Value="587" />
+              </InArgument>
+              <InArgument x:TypeArguments="ss:SecureString" x:Key="in_Password">
+                <mva:VisualBasicValue x:TypeArguments="ss:SecureString" ExpressionText="Password" />
               </InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>

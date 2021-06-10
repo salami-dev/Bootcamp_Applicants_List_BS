@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>822.4,1347.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>822.4,1447.2</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ExtractDataFromMailMessages_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="28">
@@ -41,7 +41,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="40">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="27">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -71,7 +71,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Extract Participant Info From Body and add to Datatable&#xA;" DisplayName="ExtractDataFromMailMessages" sap:VirtualizedContainerService.HintSize="555.2,1182.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Extract Participant Info From Body and add to Datatable&#xA;" DisplayName="ExtractDataFromMailMessages" sap:VirtualizedContainerService.HintSize="555.2,1282.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="ParticipantEmail" />
       <Variable x:TypeArguments="x:String" Name="ParticipantGender" />
@@ -86,32 +86,43 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="513.6,1045.6" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[in_MailMessages]">
+    <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="513.6,1145.6" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[in_MailMessages]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="snm:MailMessage">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="message" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Extract Participant Information" sap:VirtualizedContainerService.HintSize="478.4,911.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Extract Participant Information" sap:VirtualizedContainerService.HintSize="478.4,1011.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <TryCatch sap2010:Annotation.AnnotationText="Extract participant information and handle errors if particular field is missing." DisplayName="Try Catch - Extract Participant Information" sap:VirtualizedContainerService.HintSize="436.8,818.4" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+            <TryCatch sap2010:Annotation.AnnotationText="Extract participant information and handle errors if particular field is missing." DisplayName="Try Catch - Extract Participant Information" sap:VirtualizedContainerService.HintSize="436.8,918.4" sap2010:WorkflowViewState.IdRef="TryCatch_1">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <TryCatch.Try>
-                <Sequence DisplayName="Extract and Add To Data Table" sap:VirtualizedContainerService.HintSize="375.2,543.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence DisplayName="Extract and Add To Data Table" sap:VirtualizedContainerService.HintSize="375.2,643.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="MailBody" />
+                  </Sequence.Variables>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[message.Subject]" />
+                  <Assign DisplayName="Assign - Mail Body" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[MailBody]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[message.Headers("PlainText").ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[MailBody]" />
                   <ui:MultipleAssign DisplayName="Multiple Assign - Client Information" sap:VirtualizedContainerService.HintSize="333.6,255.2" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
                     <ui:MultipleAssign.AssignOperations>
                       <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
@@ -120,7 +131,7 @@
                             <OutArgument x:TypeArguments="x:String">[ParticipantFullName]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
-                            <InArgument x:TypeArguments="x:String" xml:space="preserve">[message.Body.Substring(message.Body.IndexOf("From: ")+"From:  ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                            <InArgument x:TypeArguments="x:String" xml:space="preserve">[MailBody.Substring(MailBody.IndexOf("From: ")+"From:  ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
                           </ui:AssignOperation.Value>
                         </ui:AssignOperation>
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
@@ -128,7 +139,7 @@
                             <OutArgument x:TypeArguments="x:String">[ParticipantEmploymentStatus]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
-                            <InArgument x:TypeArguments="x:String">[message.Body.Substring(message.Body.IndexOf(“Employment Status?”)+“Employment Status? “.Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf(“Employment Status?”)+“Employment Status? “.Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
                           </ui:AssignOperation.Value>
                         </ui:AssignOperation>
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
@@ -136,7 +147,7 @@
                             <OutArgument x:TypeArguments="x:String">[ParticipantPhoneNumber]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
-                            <InArgument x:TypeArguments="x:String">[message.Body.Substring(message.Body.IndexOf(“Phone Number: ”)+“Phone Number: “.Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf(“Phone Number: ”)+“Phone Number: “.Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
                           </ui:AssignOperation.Value>
                         </ui:AssignOperation>
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
@@ -144,7 +155,7 @@
                             <OutArgument x:TypeArguments="x:String">[ParticipantGender]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
-                            <InArgument x:TypeArguments="x:String">[message.Body.Substring(message.Body.IndexOf(“Gender: ”)+“Gender: “.Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf(“Gender: ”)+“Gender: “.Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
                           </ui:AssignOperation.Value>
                         </ui:AssignOperation>
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
@@ -152,7 +163,7 @@
                             <OutArgument x:TypeArguments="x:String">[ParticipantEmail]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
-                            <InArgument x:TypeArguments="x:String">[message.Body.Substring(message.Body.IndexOf(“Email address: ”)+“Email address: “.Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf(“Email address: ”)+“Email address: “.Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
                           </ui:AssignOperation.Value>
                         </ui:AssignOperation>
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
@@ -160,7 +171,7 @@
                             <OutArgument x:TypeArguments="x:String">[ParticipantContactMedium]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
-                            <InArgument x:TypeArguments="x:String">[message.Body.Substring(message.Body.IndexOf(“Where I heard of the Bootcamp program: ”)+“Where I heard of the Bootcamp program: “.Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
+                            <InArgument x:TypeArguments="x:String">[MailBody.Substring(MailBody.IndexOf("Where I heard of the Bootcamp program: ")+"Where I heard of the Bootcamp program: ".Length).Split(Environment.NewLine.ToCharArray)(0)]</InArgument>
                           </ui:AssignOperation.Value>
                         </ui:AssignOperation>
                       </scg:List>
